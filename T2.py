@@ -35,7 +35,19 @@ print(block([
   [1, 1, 1, 1, 1]
 ]))
 
+def only_5_and_3(num):
+    if num <= 0:
+        return False
+    elif only_5_and_3(num-5) or (num % 3 == 0 and only_5_and_3(num/3)):
+        return True
+    elif num == 3 or num == 5:
+        return True
+    else:
+        return False
+
 
 if __name__ == '__main__':
     #print(id_mtrx(4))
-    pass
+    print(only_5_and_3(14))
+    print(only_5_and_3(25))
+    print(only_5_and_3(7))
