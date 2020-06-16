@@ -5,7 +5,7 @@ import tensorflow as tf
 import math
 import cv2 as cv
 
-model = keras.Sequential(keras.layers.Dense(units=5, input_shape=(None, 2), activation=tf.keras.activations.relu))
+model = keras.Sequential(keras.layers.Dense(units=20, input_shape=(None, 2), activation=tf.keras.activations.relu))
 model.add(keras.layers.Dense(units=2, activation=tf.keras.activations.softmax))
 
 t_x = np.array([[33, 55], [20, 33], [38, 37], [46, 6], [9, 33], [25, 11], [62, 5], [53, 24], [62, 12]], np.float)
