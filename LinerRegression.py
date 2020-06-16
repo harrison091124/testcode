@@ -33,7 +33,7 @@ def plot_square(img, w, h):
 
 
 def compile_model():
-    model.compile(optimizer='rmsprop', loss='sparse_categorical_crossentropy')
+    model.compile(optimizer='rmsprop', loss=tf.keras.losses.sparse_categorical_crossentropy)
 
 
 def fit():
