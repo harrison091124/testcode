@@ -42,4 +42,8 @@ if __name__ == '__main__':
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                   metrics=['accuracy'])
 
-    model.fit(train_images, train_labels, epochs=10)
+    model.fit(train_images, train_labels, batch_size=48, epochs=20)
+
+    loss, metrics = model.evaluate(test_images, test_labels)
+
+    print('loss={}, metrics={}'.format(loss, metrics))
