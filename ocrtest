@@ -1,0 +1,15 @@
+import pytesseract as tes
+import cv2 as cv
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+img = cv.imread(r'e:\cv\brakeSystem_Sub.PNG')
+img_sub = img[650:690,620:740]
+
+kernel = np.ones((5,5),np.uint8)
+
+img_erosion = cv.erode(img_sub,kernel)
+
+
+
