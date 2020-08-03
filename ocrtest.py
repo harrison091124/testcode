@@ -3,6 +3,7 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
 
+#add a comment line
 
 img = cv.imread(r'e:\cv\brakeSystem_Sub.PNG')
 img_sub = img[650:690,620:740]
