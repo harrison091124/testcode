@@ -14,4 +14,7 @@ kernel = np.array([[1,1],[1,1]],np.uint8)
 img_erosion = cv.erode(img_sub, kernel, iterations=2)
 
 
+#need to integrate FCA work here.
+
+#to import and integrate FCA work.
 
