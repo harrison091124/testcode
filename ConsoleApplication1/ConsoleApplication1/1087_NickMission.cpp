@@ -43,50 +43,67 @@ typedef struct _task
 int find_slot_max(Task taskv[], int count, int start_p, int end_p)
 {
 	int max_spare_time = 0;
-	Task leading_task[256];
-	int leading_task_cnt = 0;
 
-	Task * lead_task = taskv;
+	Task leading_task[10000] = { 0 };
+
+	int leading_task_cnt = 0;
 
 	int leading_p = 0;
 
+	//第一个有效 可是assign的task index
 	int leading_task_index = 0;
 
+	//从leading task 结尾开始的最大spare time
+	int spare_without_leading_task = 0;
+
+	//排除任务队列前面已经开始的task
 	for (int i = 0; i < count; i++)
 	{
-		if (taskv[i].p <= end_p)
+		if (taskv[i].p < start_p)
 			leading_task_index++;
 	}
 
-	if()
 
-	
-	int leading_p = taskv[0].p;
-
-	for (int i = 0; i < count; i++)
+	if (leading_task_index < count)
 	{
-		if (taskv[i].p == leading_p)
+		//找出当前可开始的 平行task 数量
+		leading_p = taskv[leading_task_index].p;
+
+		for (int i = leading_task_index; i < count ; i++)
 		{
-			leading_task[leading_task_cnt++] = taskv[i];
+			if (taskv[i].p == leading_p)
+			{
+				leading_task[leading_task_cnt++] = taskv[i];
+			}
+			else
+			{
+				break;
+			}
 		}
 	}
 
-	//计算最先开始的任务开始点之前和工作时间段开始点之间的空闲时间。
-	max_spare_time += leading_p - start_p;
-
-	for (int i = 0; i < leading_task_cnt; i++)
+	if (leading_task_cnt > 0)
 	{
-		int spare_without_leading_task = 0;
+		//计算最先开始的任务开始点之前和工作时间段开始点之间的空闲时间。
+		max_spare_time += leading_p - start_p;
 
-		if (leading_task_cnt == count)
-		{//如果leading task 就是最后的task，则计算结束点到end_p 的空闲时间
-			spare_without_leading_task += end_p - (taskv[i].p + taskv[i].t - 1);
-		}
-		else
+		for (int i = 0; i < leading_task_cnt; i++)
 		{
-			spare_without_leading_task = find_slot_max(taskv, count - 1, taskv[i].p + taskv[i].t, end_p);
+			int spare_tmp = 
+				find_slot_max(&taskv[leading_task_cnt], count - leading_task_cnt, leading_task[i].p + leading_task[i].t, end_p);
+			if (spare_without_leading_task < spare_tmp)
+			{
+				spare_without_leading_task = spare_tmp;
+			}
 		}
 	}
+	else
+	{
+		//计算最先开始的任务开始点之前和工作时间段开始点之间的空闲时间。
+		max_spare_time = end_p - start_p + 1;
+	}
+
+	max_spare_time += spare_without_leading_task;
 
 	return max_spare_time;
 }
