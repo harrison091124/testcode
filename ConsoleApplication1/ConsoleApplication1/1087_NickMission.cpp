@@ -1,6 +1,4 @@
-﻿#include <iostream>
-#include <vector>
-using namespace std;
+﻿
 
 /*
 描述
@@ -33,6 +31,10 @@ using namespace std;
 输出样例：
 4
 */
+
+#include <iostream>
+#include <vector>
+using namespace std;
 
 typedef struct _task
 {
