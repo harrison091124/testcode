@@ -11,10 +11,12 @@ print(data)
 
 def get_translate_date(word=None):
     url = 'http://fanyi.youdao.com/translate_o?smartresult=dict&smartresult=rule'
-    from_data = {'i': word, 'from': 'zh-CHS', 'to': 'en', 'smartresult': 'dict', 'client': 'fanyideskweb',
-                 'salt': '15477056211258', 'sign': 'b3589f32c38bc9e3876a570b8a992604', 'ts': '1547705621125',
-                 'bv': 'b33a2f3f9d09bde064c9275bcb33d94e', 'doctype': 'json', 'version': '2.1', 'keyfrom': 'fanyi.web',
-                 'action': 'FY_BY_REALTIME', 'typoResult': 'false'}
+    from_data = {'i': word, 'from': 'AUTO', 'to': 'AUTO', 'smartresult': 'dict', 'client': 'fanyideskweb',
+                 'salt': '16158647818957', 'sign': '0d5676534837c68da8add3d1b47ec24b', 'lts': '1615864781895',
+                 'bv': '818e2470a16ccb5d68270d01f2d298b2', 'doctype': 'json', 'version': '2.1', 'keyfrom': 'fanyi.web',
+                 'action': 'FY_BY_REALTIME'}
+
+
     # 请求表单数据
     response = requests.post(url, data=from_data)
     # 将Json格式字符串转字典
