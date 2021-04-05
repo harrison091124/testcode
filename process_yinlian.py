@@ -8,7 +8,7 @@ data_sheet = wbk.add_sheet("Sheet1")  # 创建一个名为sheet1的sheet
 
 wbk_row = 0
 
-g = os.walk(r'D:\Other\做账\yinlian\12、银联2月数据 2')
+g = os.walk(r'D:\harrisonworkspace\做账\第三方数据汇总\202103数据\3月第三方平台原始数据\银联\3月银联数据2  20210402162707')
 init = 0
 for path, dir_list, file_list in g:
     for file_name in file_list:
@@ -32,4 +32,4 @@ for path, dir_list, file_list in g:
                 data_sheet.write(wbk_row, j, str(current_row[j]))
             wbk_row += 1
 
-wbk.save(r"D:\Other\银联2.xls")  # 保存
+wbk.save(r"D:\harrisonworkspace\做账\第三方数据汇总\202103数据\3月第三方平台原始数据\银联2.xls")  # 保存
